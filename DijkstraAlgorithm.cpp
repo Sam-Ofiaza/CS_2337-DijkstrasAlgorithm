@@ -3,6 +3,7 @@
 //
 
 #include "DijkstraAlgorithm.h"
+#include <limits.h>
 
 using namespace std;
 

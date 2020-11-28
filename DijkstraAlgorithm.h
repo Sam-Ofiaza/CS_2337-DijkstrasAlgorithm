@@ -6,7 +6,6 @@
 #define DIJKSTRA_ALGORITHM_BASE_DIJKSTRAALGORITHM_H
 
 #include "Graph.h"
-#include <iostream>
 
 using namespace std;
 
