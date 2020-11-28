@@ -48,30 +48,33 @@ void DijkstraAlgorithm::runAlgorithm(Vertex *vertex) {
 
         vertexList.erase(vertexList.begin()+spot);
 
-        //Loop through lowest distance vertex's adjacent vertices
-        vector<Vertex *> adjVertexList;
-        lowestDistancePair.first->getAdjacentVertices(adjVertexList);
+        //If no pair found, an adjacency list wont exist
+        if(lowestDistancePair.first != nullptr) {
+            //Loop through lowest distance vertex's adjacent vertices
+            vector<Vertex *> adjVertexList;
+            lowestDistancePair.first->getAdjacentVertices(adjVertexList);
 
-        for(Vertex *adjVertex : adjVertexList) {
-            //New names for values for readability
-            int adjVertexDistance = distances.at(adjVertex); //Shortest path for adj vertex in map
-            //Shortest path distance for lowestDistancePair vertex in map + adj vertex edge weight
-            int possibleShorterDistance = distances.at(lowestDistancePair.first) + lowestDistancePair.first->getEdgeWeight(adjVertex);
+            for (Vertex *adjVertex : adjVertexList) {
+                //New references for values for readability
+                int adjVertexDistance = distances.at(adjVertex); //Shortest path for adj vertex in map
+                int possibleShorterDistance =
+                        distances.at(lowestDistancePair.first) + lowestDistancePair.first->getEdgeWeight(adjVertex); //Shortest path distance for lowestDistancePair vertex in map + adj vertex edge weight
 
-            //If current shortest distance for lowestDistanceVertex + adj vertex edge weight < current shortest adj vertex distance
-            if(possibleShorterDistance < adjVertexDistance) {
-                //Update shortest distance to the new distance of adj vertex
-                distances.at(adjVertex) = possibleShorterDistance;
-                //Update predecessor
-                predecessors.at(adjVertex) = lowestDistancePair.first;
-                //Find adj vertex spot in vertexList and update distance
-                int spot2 = 0;
-                for(int i = 0; i < vertexList.size(); i++) {
-                    if(vertexList.at(i).first == adjVertex) {
-                        spot2 = i;
+                //If current shortest distance for lowestDistanceVertex + adj vertex edge weight < current shortest adj vertex distance
+                if (possibleShorterDistance < adjVertexDistance) {
+                    //Update shortest distance to the new distance of adj vertex
+                    distances.at(adjVertex) = possibleShorterDistance;
+                    //Update predecessor
+                    predecessors.at(adjVertex) = lowestDistancePair.first;
+                    //Find adj vertex spot in vertexList and update distance
+                    int spot2 = 0;
+                    for (int i = 0; i < vertexList.size(); i++) {
+                        if (vertexList.at(i).first == adjVertex) {
+                            spot2 = i;
+                        }
                     }
+                    vertexList.at(spot2).second = possibleShorterDistance;
                 }
-                vertexList.at(spot2).second = possibleShorterDistance;
             }
         }
     }
@@ -83,6 +86,10 @@ int DijkstraAlgorithm::getShortestDistance(Vertex *vertex) {
 }
 
 string DijkstraAlgorithm::getPathTo(Vertex *vertex) {
+    if(distances.at(vertex) == INT_MAX) {
+        return "";
+    }
+
     string path;
     Vertex *currentVertex = vertex;
     while(currentVertex != source) {

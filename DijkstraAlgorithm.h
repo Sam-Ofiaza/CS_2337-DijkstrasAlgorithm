@@ -5,7 +5,8 @@
 #ifndef DIJKSTRA_ALGORITHM_BASE_DIJKSTRAALGORITHM_H
 #define DIJKSTRA_ALGORITHM_BASE_DIJKSTRAALGORITHM_H
 
-#include "Graph.h";
+#include "Graph.h"
+#include <iostream>
 
 using namespace std;
 
