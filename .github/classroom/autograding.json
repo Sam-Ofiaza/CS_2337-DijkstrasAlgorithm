@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Simple Graph",
+      "setup": "",
+      "run": "make test1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "Five Element Test",
+      "setup": "",
+      "run": "make test2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 15
+    },
+    {
+      "name": "Can't Go Anywhere",
+      "setup": "",
+      "run": "make test3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 10
+    },
+    {
+      "name": "Can Go Everywhere",
+      "setup": "",
+      "run": "make test4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 15
+    }
+  ]
+}
